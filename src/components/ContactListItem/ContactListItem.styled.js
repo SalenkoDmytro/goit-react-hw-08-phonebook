@@ -2,24 +2,34 @@ import styled from 'styled-components';
 
 export const Li = styled.li`
   display: flex;
-  padding: 5px;
-  background-color: #faf9f9;
+  padding: 5px 20px;
+  background-color: ${({ theme }) => theme.colors.gray};
   max-width: 300px;
   border-radius: 7px;
-  & + & {
-    margin-bottom: 5px;
-  }
+  margin-bottom: 5px;
+`;
+
+export const Text = styled.p`
+  margin: 0;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
 `;
 
 export const Button = styled.button`
-  background-color: white;
-  color: black;
-  border: 1px solid black;
+  background-color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.black};
   border-radius: 82px;
   margin-left: auto;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 
   &:active {
-    color: white;
-    background-color: black;
+    color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.gray};
   }
 `;

@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Notiflix from 'notiflix';
 import ContactForm from './ContactForm/';
 import Filter from './Filter';
 import ContactList from './ContactList';
@@ -8,6 +9,16 @@ class App extends Component {
     contacts: [],
     filter: '',
   };
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parcedContacts = JSON.parse(contacts);
+    if (parcedContacts) this.setState({ contacts: parcedContacts });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts)
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  }
 
   handleData = newContacts => {
     const { contacts } = this.state;
@@ -16,7 +27,9 @@ class App extends Component {
         ({ name }) => name.toLowerCase() === newContacts.name.toLowerCase()
       )
     )
-      return alert(`${newContacts.name} is already in contacts`);
+      return Notiflix.Notify.failure(
+        `${newContacts.name} is already in contacts`
+      );
 
     this.setState({ contacts: [newContacts, ...contacts] });
   };
@@ -45,7 +58,7 @@ class App extends Component {
     const visibleContacts = this.handleFilter();
 
     return (
-      <div style={{ padding: 20 }}>
+      <div style={{ padding: 40 }}>
         <h1 style={{ marginTop: 0 }}>Phonebook</h1>
         <ContactForm onSubmit={this.handleData} />
 
