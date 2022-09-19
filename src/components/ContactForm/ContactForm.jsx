@@ -20,10 +20,10 @@ class ContactForm extends Component {
 
   state = { name: '', number: '' };
 
-  schema = yup.object().shape({
-    name: yup.string().min(6).max(20).required(),
-    number: yup.string().min(6).max(11).required(),
-  });
+  // schema = yup.object().shape({
+  //   name: yup.string().min(6).max(20).required(),
+  //   number: yup.string().min(6).max(11).required(),
+  // });
 
   handleSubmit = (values, { resetForm }) => {
     this.props.onSubmit({ ...values, id: nanoid() });
@@ -35,7 +35,7 @@ class ContactForm extends Component {
       <Formik
         initialValues={this.state}
         onSubmit={this.handleSubmit}
-        validationSchema={this.schema}
+        // validationSchema={this.schema}
       >
         <FormWrap>
           <Label>
