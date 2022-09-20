@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
 
-export const FormWrap = styled(Form)`
+export const FormWrap = styled.form`
   padding: 20px;
   background-color: ${({ theme }) => theme.colors.gray};
   border: 1px solid ${({ theme }) => theme.colors.black};
@@ -18,7 +17,7 @@ export const Label = styled.label`
   line-height: 22px;
 `;
 
-export const InputStyled = styled(Field)`
+export const InputStyled = styled.input`
   margin-left: auto;
   background-color: ${({ theme }) => theme.colors.white};
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
