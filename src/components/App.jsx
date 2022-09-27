@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Notiflix from 'notiflix';
 import ContactForm from './ContactForm/';
 import Filter from './Filter';
@@ -32,13 +32,13 @@ const App = () => {
     setFilter(value);
   };
 
-  const handleFilter = () => {
-    const normalizedFilter = filter.toLowerCase();
-
-    return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(normalizedFilter)
-    );
-  };
+  const handleFilter = useMemo(
+    () =>
+      contacts.filter(({ name }) =>
+        name.toLowerCase().includes(filter.toLowerCase())
+      ),
+    [filter, contacts]
+  );
 
   const deleteContacts = idToDelete => {
     setContacts(prevContacts =>
@@ -53,7 +53,7 @@ const App = () => {
 
       <h2>Contacts</h2>
       <Filter onChange={handleChange} />
-      <ContactList contacts={handleFilter()} onDeleteContact={deleteContacts} />
+      <ContactList contacts={handleFilter} onDeleteContact={deleteContacts} />
     </div>
   );
 };
