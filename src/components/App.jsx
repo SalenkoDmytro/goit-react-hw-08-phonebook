@@ -3,12 +3,15 @@ import Notiflix from 'notiflix';
 import ContactForm from './ContactForm/';
 import Filter from './Filter';
 import ContactList from './ContactList';
+import { addContacts } from 'redux/contacts/contactsActions';
+import { useDispatch } from 'react-redux';
 
 const App = () => {
   const [contacts, setContacts] = useState(
     () => JSON.parse(localStorage.getItem('contacts')) ?? []
   );
   const [filter, setFilter] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -24,7 +27,8 @@ const App = () => {
         `${newContacts.name} is already in contacts`
       );
 
-    setContacts([newContacts, ...contacts]);
+    dispatch(addContacts(newContacts));
+    // setContacts([newContacts, ...contacts]);
   };
 
   const handleChange = e => {
