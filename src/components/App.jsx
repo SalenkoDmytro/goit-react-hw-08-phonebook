@@ -2,10 +2,10 @@ import Notiflix from 'notiflix';
 import ContactForm from './ContactForm/';
 import Filter from './Filter';
 import ContactList from './ContactList';
-import { addContacts, deleteContacts } from 'redux/contacts/contactsSlice';
+import { addContacts } from 'redux/contactsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts } from 'redux/contactsSelectors';
-import { addFilter } from 'redux/filter/filterSlice';
+import { addFilter } from 'redux/filterSlice';
 
 const App = () => {
   const dispatch = useDispatch();
