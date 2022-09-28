@@ -1,21 +1,15 @@
-import { useState, useEffect, useMemo } from 'react';
 import Notiflix from 'notiflix';
 import ContactForm from './ContactForm/';
 import Filter from './Filter';
 import ContactList from './ContactList';
-import { addContacts } from 'redux/contacts/contactsActions';
-import { useDispatch } from 'react-redux';
+import { addContacts, deleteContacts } from 'redux/contacts/contactsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContacts } from 'redux/contactsSelectors';
+import { addFilter } from 'redux/filter/filterSlice';
 
 const App = () => {
-  const [contacts, setContacts] = useState(
-    () => JSON.parse(localStorage.getItem('contacts')) ?? []
-  );
-  const [filter, setFilter] = useState('');
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  const contacts = useSelector(getContacts);
 
   const handleData = newContacts => {
     if (
@@ -28,26 +22,11 @@ const App = () => {
       );
 
     dispatch(addContacts(newContacts));
-    // setContacts([newContacts, ...contacts]);
   };
 
   const handleChange = e => {
     const { value } = e.currentTarget;
-    setFilter(value);
-  };
-
-  const handleFilter = useMemo(
-    () =>
-      contacts.filter(({ name }) =>
-        name.toLowerCase().includes(filter.toLowerCase())
-      ),
-    [filter, contacts]
-  );
-
-  const deleteContacts = idToDelete => {
-    setContacts(prevContacts =>
-      prevContacts.filter(({ id }) => id !== idToDelete)
-    );
+    dispatch(addFilter(value));
   };
 
   return (
@@ -57,7 +36,7 @@ const App = () => {
 
       <h2>Contacts</h2>
       <Filter onChange={handleChange} />
-      <ContactList contacts={handleFilter} onDeleteContact={deleteContacts} />
+      <ContactList />
     </div>
   );
 };

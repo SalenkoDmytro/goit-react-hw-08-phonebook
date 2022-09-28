@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
+import Avatar from 'react-avatar';
 import { Li, Button, Text } from './ContactListItem.styled';
 
 function ContactListItem({ name, number, id, onDeleteContact }) {
   return (
     <Li>
+      <Avatar name={name} round={true} size={20} />
       <Text>
-        {name}: <span>{number}</span>
+        {name.slice(1)}: <span>{number}</span>
       </Text>
       <Button type="button" onClick={() => onDeleteContact(id)}>
         Delete

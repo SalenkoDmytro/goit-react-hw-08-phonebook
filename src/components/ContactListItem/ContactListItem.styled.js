@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const Li = styled.li`
   display: flex;
+  text-align: center;
+  justify-content: baseline;
   padding: 5px 20px;
   background-color: ${({ theme }) => theme.colors.gray};
   max-width: 300px;
