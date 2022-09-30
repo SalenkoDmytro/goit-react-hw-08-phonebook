@@ -1,18 +1,40 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { addContact, deleteContact, fetchContacts } from './operations';
 
-const initialState = { contacts: [] };
+const handlePending = state => {
+  state.isLoading = true;
+};
+const handleRejected = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
+};
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: initialState,
-  reducers: {
-    addContacts: (state, { payload }) => {
-      state.contacts.push(payload);
-    },
-    deleteContacts: (state, { payload }) => {
-      const toDelete = state.contacts.findIndex(({ id }) => id === payload);
+  initialState: { items: [], isLoading: false, error: null },
+  extraReducers: {
+    [fetchContacts.pending]: handlePending,
+    [addContact.pending]: handlePending,
+    [deleteContact.pending]: handlePending,
 
-      state.contacts.splice(toDelete, 1);
+    [fetchContacts.rejected]: handleRejected,
+    [addContact.rejected]: handleRejected,
+    [deleteContact.rejected]: handleRejected,
+
+    [fetchContacts.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = null;
+      state.items = payload;
+    },
+    [addContact.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = null;
+      state.items.push(payload);
+    },
+    [deleteContact.fulfilled]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = null;
+      state.items = state.items.filter(contact => contact.id !== payload.id);
     },
   },
 });

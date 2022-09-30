@@ -1,15 +1,20 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Notiflix from 'notiflix';
 import ContactForm from './ContactForm/';
 import Filter from './Filter';
 import ContactList from './ContactList';
-import { addContacts } from 'redux/contactsSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/contactsSelectors';
+import { selectContacts } from 'redux/contactsSelectors';
 import { addFilter } from 'redux/filterSlice';
+import { addContact, fetchContacts } from 'redux/operations';
 
 const App = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const handleData = newContacts => {
     if (
@@ -21,7 +26,7 @@ const App = () => {
         `${newContacts.name} is already in contacts`
       );
 
-    dispatch(addContacts(newContacts));
+    dispatch(addContact(newContacts));
   };
 
   const handleChange = e => {

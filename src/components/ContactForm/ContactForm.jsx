@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { FormWrap, InputStyled, Label, Button } from './ContactForm.styled';
 
@@ -30,7 +29,7 @@ const ContactForm = ({ onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    onSubmit({ id: nanoid(), name, number });
+    onSubmit({ name, number });
     reset();
   };
 
