@@ -1,5 +1,5 @@
 import 'node_modules/modern-normalize/modern-normalize.css';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 export const GlobalStyles = styled.createGlobalStyle`
   body {

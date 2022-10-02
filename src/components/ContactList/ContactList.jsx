@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import {
   selectIsLoading,
   selectVisibleContacts,
-} from 'redux/contactsSelectors';
+} from 'redux/contacts/contactsSelectors';
 import { Loader } from 'components/Loader/Loader';
 
-function ContactList() {
+export function ContactList() {
   const contacts = useSelector(selectVisibleContacts);
   const isLoading = useSelector(selectIsLoading);
 
@@ -23,5 +23,3 @@ function ContactList() {
     </List>
   );
 }
-
-export default ContactList;

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Avatar from 'react-avatar';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/operations';
+import { deleteContact } from 'redux/contacts/operations';
 import { Li, Button, Text } from './ContactListItem.styled';
 
 function ContactListItem({ name, number, id }) {
@@ -10,7 +10,7 @@ function ContactListItem({ name, number, id }) {
     <Li>
       <Avatar name={name} round={true} size={20} />
       <Text>
-        {name.slice(1)}: <span>{number}</span>
+        {name}: <span>{number}</span>
       </Text>
       <Button type="button" onClick={() => dispatch(deleteContact(id))}>
         Delete

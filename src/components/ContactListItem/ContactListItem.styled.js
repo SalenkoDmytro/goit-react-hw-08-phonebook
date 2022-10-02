@@ -12,7 +12,7 @@ export const Li = styled.li`
 `;
 
 export const Text = styled.p`
-  margin: 0;
+  margin: 0 0 0 10px;
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;

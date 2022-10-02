@@ -16,11 +16,9 @@ const contactsSlice = createSlice({
     [fetchContacts.pending]: handlePending,
     [addContact.pending]: handlePending,
     [deleteContact.pending]: handlePending,
-
     [fetchContacts.rejected]: handleRejected,
     [addContact.rejected]: handleRejected,
     [deleteContact.rejected]: handleRejected,
-
     [fetchContacts.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.error = null;
