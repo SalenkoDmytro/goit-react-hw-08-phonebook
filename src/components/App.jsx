@@ -4,13 +4,14 @@ import Notiflix from 'notiflix';
 import ContactForm from './ContactForm/';
 import Filter from './Filter';
 import ContactList from './ContactList';
-import { selectContacts } from 'redux/contactsSelectors';
+import { selectContacts, selectError } from 'redux/contactsSelectors';
 import { addFilter } from 'redux/filterSlice';
 import { addContact, fetchContacts } from 'redux/operations';
 
 const App = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -35,14 +36,18 @@ const App = () => {
   };
 
   return (
-    <div style={{ padding: 40 }}>
-      <h1 style={{ marginTop: 0 }}>Phonebook</h1>
-      <ContactForm onSubmit={handleData} />
-
-      <h2>Contacts</h2>
-      <Filter onChange={handleChange} />
-      <ContactList />
-    </div>
+    <>
+      {error && <div>Something went wrong, please try again...</div>}
+      {!error && (
+        <div style={{ padding: 40 }}>
+          <h1 style={{ marginTop: 0 }}>Phonebook</h1>
+          <ContactForm onSubmit={handleData} />
+          <h2>Contacts</h2>
+          <Filter onChange={handleChange} />
+          <ContactList />
+        </div>
+      )}
+    </>
   );
 };
 
