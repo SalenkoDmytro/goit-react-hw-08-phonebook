@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { addFilter } from 'redux/filter/filterSlice';
-import { FilterStyled } from './Filter.styled';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 export function Filter() {
   const dispatch = useDispatch();
@@ -11,9 +12,19 @@ export function Filter() {
   };
 
   return (
-    <label>
-      Find contacts by name
-      <FilterStyled type="text" name="filter" onChange={handleChange} />
-    </label>
+    <>
+      <InputGroup className="mb-3">
+        <InputGroup.Text id="basic-addon3">
+          Find contacts by name
+        </InputGroup.Text>
+        <Form.Control
+          id="basic-url"
+          aria-describedby="basic-addon3"
+          type="text"
+          name="filter"
+          onChange={handleChange}
+        />
+      </InputGroup>
+    </>
   );
 }

@@ -1,20 +1,33 @@
 import PropTypes from 'prop-types';
-import Avatar from 'react-avatar';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts/operations';
-import { Li, Button, Text } from './ContactListItem.styled';
+import {
+  Li,
+  Text,
+  ButtonStyled,
+  AvatarStyled,
+  Number,
+} from './ContactListItem.styled';
+import Button from 'react-bootstrap/Button';
 
-function ContactListItem({ name, number, id }) {
+export function ContactListItem({ name, number, id }) {
   const dispatch = useDispatch();
+
   return (
-    <Li>
-      <Avatar name={name} round={true} size={20} />
+    <Li variant="light">
+      <AvatarStyled name={name} round={true} size={30} />
       <Text>
-        {name}: <span>{number}</span>
+        {name}: <Number>{number}</Number>
       </Text>
-      <Button type="button" onClick={() => dispatch(deleteContact(id))}>
+
+      <ButtonStyled
+        variant="danger"
+        type="button"
+        onClick={() => dispatch(deleteContact(id))}
+        size="sm"
+      >
         Delete
-      </Button>
+      </ButtonStyled>
     </Li>
   );
 }
@@ -24,5 +37,3 @@ ContactListItem.propTypes = {
   number: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
-
-export default ContactListItem;

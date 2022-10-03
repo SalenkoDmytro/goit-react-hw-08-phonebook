@@ -9,6 +9,7 @@ export const GlobalStyles = styled.createGlobalStyle`
       'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #e5e5e5;
   }
 
   code {

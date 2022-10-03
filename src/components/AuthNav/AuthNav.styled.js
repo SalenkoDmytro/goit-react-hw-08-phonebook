@@ -1,13 +1,14 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
-export const LinkStyled = styled(Link)`
-  display: inline-block;
-  text-decoration: none;
-  padding: 12px;
-  font-weight: 700;
-  color: #2a363b;
-  &:active {
-    color: #e84a5f;
+export const LinkStyled = styled(Button)`
+  & + & {
+    margin-left: 10px;
   }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
 `;

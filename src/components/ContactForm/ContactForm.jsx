@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { FormWrap, InputStyled, Label, Button } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/contactsSelectors';
 import Notiflix from 'notiflix';
 import { addContact } from 'redux/contacts/operations';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -48,10 +49,10 @@ export const ContactForm = () => {
   };
 
   return (
-    <FormWrap onSubmit={handleSubmit}>
-      <Label>
-        Name
-        <InputStyled
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="contactFormName">
+        <Form.Label>Name</Form.Label>
+        <Form.Control
           onChange={handleChange}
           value={name}
           type="text"
@@ -59,12 +60,16 @@ export const ContactForm = () => {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
+          placeholder="Enter contact name"
         />
-      </Label>
+        <Form.Text className="text-muted">
+          We will save your contacts. Only you can see them.
+        </Form.Text>
+      </Form.Group>
 
-      <Label>
-        Number
-        <InputStyled
+      <Form.Group className="mb-3" controlId="contactFormPhone">
+        <Form.Label>Number</Form.Label>
+        <Form.Control
           onChange={handleChange}
           value={number}
           type="tel"
@@ -72,9 +77,13 @@ export const ContactForm = () => {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
+          placeholder="Phone number"
         />
-      </Label>
-      <Button type="submit">Add contact</Button>
-    </FormWrap>
+      </Form.Group>
+
+      <Button variant="outline-primary" type="submit">
+        Add contact
+      </Button>
+    </Form>
   );
 };

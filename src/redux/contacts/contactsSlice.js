@@ -32,7 +32,10 @@ const contactsSlice = createSlice({
     [deleteContact.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
       state.error = null;
-      state.items = state.items.filter(contact => contact.id !== payload.id);
+      const index = state.items.findIndex(({ id }) => {
+        return id === payload;
+      });
+      state.items.splice(index, 1);
     },
   },
 });

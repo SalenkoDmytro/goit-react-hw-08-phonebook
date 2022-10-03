@@ -1,37 +1,29 @@
 import styled from 'styled-components';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
+import Avatar from 'react-avatar';
 
-export const Li = styled.li`
+export const Li = styled(ListGroup.Item)`
   display: flex;
   text-align: center;
-  justify-content: baseline;
-  padding: 5px 20px;
-  background-color: ${({ theme }) => theme.colors.gray};
-  max-width: 300px;
   border-radius: 7px;
   margin-bottom: 5px;
 `;
 
 export const Text = styled.p`
-  margin: 0 0 0 10px;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
+  margin: 0;
+  margin-left: 50px;
+  font-size: 22px;
+`;
+export const Number = styled.span`
+  margin-left: 50px;
+  font-weight: 700;
 `;
 
-export const Button = styled.button`
-  background-color: ${({ theme }) => theme.colors.black};
-  color: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors.black};
-  border-radius: 82px;
+export const ButtonStyled = styled(Button)`
   margin-left: auto;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+`;
 
-  &:active {
-    color: ${({ theme }) => theme.colors.black};
-    background-color: ${({ theme }) => theme.colors.gray};
-  }
+export const AvatarStyled = styled(Avatar)`
+  margin-left: 10px;
 `;
