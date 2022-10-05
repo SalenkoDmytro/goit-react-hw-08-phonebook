@@ -8,7 +8,7 @@ import {
   AvatarStyled,
   Number,
 } from './ContactListItem.styled';
-import Button from 'react-bootstrap/Button';
+import Notiflix from 'notiflix';
 
 export function ContactListItem({ name, number, id }) {
   const dispatch = useDispatch();
@@ -23,7 +23,11 @@ export function ContactListItem({ name, number, id }) {
       <ButtonStyled
         variant="danger"
         type="button"
-        onClick={() => dispatch(deleteContact(id))}
+        onClick={() => {
+          Notiflix.Notify.failure(`You have removed ${name} from contacts`);
+
+          dispatch(deleteContact(id));
+        }}
         size="sm"
       >
         Delete

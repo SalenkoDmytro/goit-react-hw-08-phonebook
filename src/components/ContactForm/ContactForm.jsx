@@ -5,12 +5,14 @@ import Notiflix from 'notiflix';
 import { addContact } from 'redux/contacts/operations';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+// import { Notification } from 'components/Toast/Toast';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+  // const [show, setShow] = useState(false);
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -44,6 +46,8 @@ export const ContactForm = () => {
       return Notiflix.Notify.failure(`${name} is already in contacts`);
     }
 
+    Notiflix.Notify.success(`You have added ${name} to contacts`);
+    // setShow(true);
     dispatch(addContact({ name, number }));
     reset();
   };
