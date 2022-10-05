@@ -5,6 +5,7 @@ import { fetchUserData } from 'redux/auth/operations';
 import { Layout } from './Layout/Layout';
 import HomePage from 'pages/HomePage';
 import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
 
 const ContactPage = lazy(() => import('../pages/ContactPage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -22,12 +23,30 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        {/* <PrivateRoute>
-          <ContactPage />
-        </PrivateRoute> */}
-        <Route path="contacts" element={<ContactPage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="login" element={<LoginPage />} />
+        <Route
+          path="contacts"
+          element={
+            <PrivateRoute>
+              <ContactPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <PublicRoute redirect>
+              <RegisterPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <PublicRoute redirect>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
       </Route>
       <Route path="*" element={<ErrorPage />} />
     </Routes>
