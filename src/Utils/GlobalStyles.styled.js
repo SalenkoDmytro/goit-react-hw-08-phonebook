@@ -1,15 +1,14 @@
-import 'node_modules/modern-normalize/modern-normalize.css';
-import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyles = styled.createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   body {
+    background: linear-gradient(to right, #3e5151, #decba4);
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
       'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
       'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #e5e5e5;
   }
 
   code {

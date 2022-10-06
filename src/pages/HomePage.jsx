@@ -1,10 +1,9 @@
-import { ContactForm } from 'components/ContactForm/ContactForm';
+import img from '../images/phonebook.jpg';
 
 const HomePage = () => {
   return (
     <>
-      <h1>ADD NEW CONTACTS</h1>
-      <ContactForm />
+      <img src={img} alt="phonebook" />
     </>
   );
 };

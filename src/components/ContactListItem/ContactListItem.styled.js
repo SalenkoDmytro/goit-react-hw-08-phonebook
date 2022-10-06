@@ -12,7 +12,7 @@ export const Li = styled(ListGroup.Item)`
 
 export const Text = styled.p`
   margin: 0;
-  margin-left: 50px;
+  margin-left: 10px;
   font-size: 22px;
 `;
 export const Number = styled.span`

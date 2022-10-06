@@ -47,8 +47,8 @@ const App = () => {
             </PublicRoute>
           }
         />
+        <Route path="*" element={<ErrorPage />} />
       </Route>
-      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 };
